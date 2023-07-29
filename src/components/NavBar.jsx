@@ -26,7 +26,7 @@ const NavBar = ({ inCart }) => {
           </button>
         </div>
         <div className="navbar hidden md:block fixed top-20 right-1 md:static text-white bg-black p-3 ">
-          <nav className="text-base flex flex-col gap-5 md:block">
+          <nav className="text-base flex flex-col gap-5 md:block md:text-xl">
             <NavLink
               onClick={showNavbar}
               className="align-middle hover:scale-125 inline-block transition-all"
@@ -53,6 +53,7 @@ const NavBar = ({ inCart }) => {
               to={'cart'}
             >
               <i className="fa-solid fa-cart-shopping"></i>
+              <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{inCart}</div>
             </NavLink>
           </nav>
         </div>

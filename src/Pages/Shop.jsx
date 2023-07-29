@@ -25,7 +25,7 @@ const Shop = ({ cart, setCart, setInCart }) => {
     </div>
   ) : (
     <>
-      <div className="container p-6 mx-auto max-w-6xl">
+      <div className="container p-6 mx-auto max-w-7xl">
         <h2 className="text-2xl p-4 md:text-3xl">Shop</h2>
         <select
           onInput={changeCategory}

@@ -15,7 +15,7 @@ const Router = ({ cart, setCart, inCart, setInCart }) => {
         {index: true, element: <Home />},
         {path: '/about', element: <About />},
         {path: '/shop', element: <Shop cart={cart} setCart={setCart} setInCart={setInCart} />},
-        {path: '/cart', element: <Cart cart={cart} setCart={setCart} />},
+        {path: '/cart', element: <Cart cart={cart} setCart={setCart} setInCart={setInCart} />},
       ]
     },
   ])
