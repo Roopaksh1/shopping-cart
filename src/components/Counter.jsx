@@ -26,7 +26,7 @@ const Counter = ({ addItem, removeItem, count, id }) => {
     );
   }
   return (
-    <div className="flex items-center p-0.5">
+    <div className="flex items-center p-2">
       <button
         data-id={id}
         onClick={addItem}

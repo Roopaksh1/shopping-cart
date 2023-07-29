@@ -20,12 +20,12 @@ const Shop = ({ cart, setCart, setInCart }) => {
   };
 
   return (isLoading || !data) ? (
-    <div className="flex justify-center items-center mt-20">
+    <div className="flex justify-center items-center flex-grow">
       <i className="fa-solid fa-spinner animate-spin text-8xl"></i>
     </div>
   ) : (
     <>
-      <div className="container p-6 mx-auto max-w-7xl">
+      <div className="container p-6 mx-auto max-w-7xl flex-grow">
         <h2 className="text-2xl p-4 md:text-3xl">Shop</h2>
         <select
           onInput={changeCategory}

@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
+import Footer from './Footer';
 
 const NavBar = ({ inCart }) => {
   const showNavbar = () => {
@@ -7,7 +8,7 @@ const NavBar = ({ inCart }) => {
   };
 
   return (
-    <>
+    <div className='flex flex-col min-h-screen'>
       <header className="p-4 bg-black flex justify-between font-bold sticky top-0 font-serif">
         <h1 className="text-3xl text-white">Fake Store</h1>
         <div className="mobile text-white md:hidden">
@@ -44,9 +45,9 @@ const NavBar = ({ inCart }) => {
             <NavLink
               onClick={showNavbar}
               className="align-middle md:ml-5 hover:scale-125 inline-block transition-all"
-              to={'about'}
+              to={'contact'}
             >
-              About
+              Contact
             </NavLink>
             <NavLink
               className="relative top-1 hidden md:inline-block md:ml-5 hover:scale-125 transition-all"
@@ -59,7 +60,8 @@ const NavBar = ({ inCart }) => {
         </div>
       </header>
       <Outlet />
-    </>
+      <Footer />
+    </div>
   );
 };
 
