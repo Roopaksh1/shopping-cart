@@ -7,7 +7,7 @@ const NavBar = () => {
 
   return (
     <>
-      <header className="p-4 bg-black flex justify-between font-mono font-bold sticky top-0">
+      <header className="p-4 bg-black flex justify-between font-mono font-bold sticky top-0 font-serif">
         <h1 className="text-3xl text-white">Fake Store</h1>
         <div className="mobile text-white md:hidden">
           <Link
