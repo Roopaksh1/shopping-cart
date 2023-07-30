@@ -38,22 +38,22 @@ const Cart = ({ cart, setCart, setInCart }) => {
       return (
         <div
           key={index}
-          className="border-b-2 p-3 w-full md:flex md:gap-10 md:hover:shadow-[7px_0px_2px_0px_#e8e8e8]"
+          className="border-b-2 p-3 w-full lg:flex lg:gap-10 lg:hover:shadow-[7px_0px_2px_0px_#e8e8e8]"
         >
           <div className="flex justify-center">
             <img src={product.image} alt=" " className="w-20" />
           </div>
-          <div className="text-center md:flex md:flex-col md:justify-center gap-4 md:flex-grow md:font-normal">
-            <p className='md:text-lg text-center'>{product.title}</p>
-            <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-10 md:items-center">
-              <p className="font-bold mt-3 md:hidden">$ {product.price}</p>
+          <div className="text-center lg:flex lg:flex-col lg:justify-center gap-4 lg:flex-grow lg:font-normal">
+            <p className='lg:text-lg text-center'>{product.title}</p>
+            <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-center lg:gap-10 lg:items-center">
+              <p className="font-bold mt-3 lg:hidden">$ {product.price}</p>
               <Counter
                 addItem={addItem}
                 removeItem={removeItem}
                 count={product.count}
                 id={product.id}
               />
-              <p className="font-bold hidden md:block md:flex-grow">
+              <p className="font-bold hidden lg:block lg:flex-grow">
                 $ {product.price}
               </p>
               <button
@@ -80,7 +80,7 @@ const Cart = ({ cart, setCart, setInCart }) => {
 
   return cart.length === 0 ? (
     <div className=" h-[calc(100vh-10rem)] flex justify-center items-center flex-grow">
-      <div className="text-2xl container mx-auto p-6 text-center bg-white max-w-fit rounded-2xl hover:shadow-xl md:p-16">
+      <div className="text-2xl container mx-auto p-6 text-center bg-white max-w-fit rounded-2xl hover:shadow-xl lg:p-16">
         <p className="mb-20 font-bold font-sans">
           Your cart is empty! Click below to start shopping.
         </p>
@@ -90,23 +90,23 @@ const Cart = ({ cart, setCart, setInCart }) => {
       </div>
     </div>
   ) : (
-    <main className="container mx-auto p-4 flex flex-col gap-4 md:flex-row md:justify-center md:gap-20 flex-grow">
-      <div className="font-semibold text-xl md:flex md:flex-col md:gap-10 md:w-[42rem]">
-        <div className="flex justify-between md:text-2xl">
+    <main className="container mx-auto p-4 flex flex-col gap-4 lg:flex-row lg:justify-center lg:gap-20 flex-grow">
+      <div className="font-semibold text-xl lg:flex lg:flex-col lg:gap-10 lg:w-[42rem]">
+        <div className="flex justify-between lg:text-2xl">
           <p>Your Shopping Cart</p>
           <p>
             {cart.length} {cart.length === 1 ? 'Item' : 'Items'}
           </p>
         </div>
-        <div className="bg-white rounded-xl flex flex-col items-center gap-4 hidden md:block">
+        <div className="bg-white rounded-xl flex flex-col items-center gap-4 hidden lg:block">
           {mapCart()}
         </div>
       </div>
-      <div className="bg-white rounded-xl flex flex-col items-center gap-4 md:hidden">
+      <div className="bg-white rounded-xl flex flex-col items-center gap-4 lg:hidden">
         {mapCart()}
       </div>
-      <div className="bg-white p-2 flex flex-col gap-10 md:self-start md:rounded-2xl md:p-3">
-        <div className="flex justify-between font-bold md:text-2xl">
+      <div className="bg-white p-2 flex flex-col gap-10 lg:self-start lg:rounded-2xl lg:p-3">
+        <div className="flex justify-between font-bold lg:text-2xl">
           <p>Estimated Total</p>
           <p>$ {getTotal()}</p>
         </div>

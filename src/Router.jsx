@@ -5,6 +5,7 @@ import Home from './Pages/Home'
 import Contact from './Pages/Contact'
 import Shop from './Pages/Shop'
 import Cart from './Pages/Cart'
+import Error from './components/Error';
 
 const Router = ({ cart, setCart, inCart, setInCart }) => {
   const router = createBrowserRouter([
@@ -16,8 +17,12 @@ const Router = ({ cart, setCart, inCart, setInCart }) => {
         {path: '/contact', element: <Contact />},
         {path: '/shop', element: <Shop cart={cart} setCart={setCart} setInCart={setInCart} />},
         {path: '/cart', element: <Cart cart={cart} setCart={setCart} setInCart={setInCart} />},
-      ]
+      ],
     },
+    {
+      path: '*',
+      element: <Error />
+    }
   ])
 
   return <RouterProvider router={router} />
