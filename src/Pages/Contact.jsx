@@ -1,4 +1,7 @@
+import { useTitle } from '../Utils/useTitle';
+
 const Contact = () => {
+  useTitle('FakeStore - Contact')
   return (
     <nav className="flex-grow flex flex-col justify-center items-center gap-10">
       <div className="flex gap-5 md:hidden">

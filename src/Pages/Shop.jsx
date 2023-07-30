@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import Product from '../components/Product';
+import { useTitle } from '../Utils/useTitle';
 
 const Shop = ({ cart, setCart, setInCart }) => {
+  useTitle('FakeStore - Shop')
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
   const [category, setCategory] = useState('all');
@@ -19,7 +21,7 @@ const Shop = ({ cart, setCart, setInCart }) => {
     setCategory(e.target.value);
   };
 
-  return (isLoading || !data) ? (
+  return isLoading || !data ? (
     <div className="flex justify-center items-center flex-grow">
       <i className="fa-solid fa-spinner animate-spin text-8xl"></i>
     </div>
@@ -39,7 +41,17 @@ const Shop = ({ cart, setCart, setInCart }) => {
           <option value="women's clothing">Women&apos;s Clothing</option>
           <option value="jewelery">Jewelry</option>
         </select>
-        <main>{<Product data={data} category={category} cart={cart} setCart={setCart} setInCart={setInCart}/>}</main>
+        <main>
+          {
+            <Product
+              data={data}
+              category={category}
+              cart={cart}
+              setCart={setCart}
+              setInCart={setInCart}
+            />
+          }
+        </main>
       </div>
     </>
   );

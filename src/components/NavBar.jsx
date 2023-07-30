@@ -8,7 +8,7 @@ const NavBar = ({ inCart }) => {
   };
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-black flex justify-between font-bold sticky top-0 font-serif">
         <h1 className="text-3xl text-white">Fake Store</h1>
         <div className="mobile text-white md:hidden">
@@ -17,7 +17,9 @@ const NavBar = ({ inCart }) => {
             to={'cart'}
           >
             <i className="fa-solid fa-cart-shopping"></i>
-            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{inCart}</div>
+            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+              {inCart}
+            </div>
           </NavLink>
           <button
             onClick={showNavbar}
@@ -54,7 +56,9 @@ const NavBar = ({ inCart }) => {
               to={'cart'}
             >
               <i className="fa-solid fa-cart-shopping"></i>
-              <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{inCart}</div>
+              <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+                {inCart}
+              </div>
             </NavLink>
           </nav>
         </div>
@@ -69,4 +73,4 @@ export default NavBar;
 
 NavBar.propTypes = {
   inCart: PropTypes.number,
-}
+};

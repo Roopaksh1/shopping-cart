@@ -7,9 +7,9 @@ const Cart = ({ productID, cart, setCart, setInCart, data }) => {
     arr.push({
       id: productID,
       count: 1,
-      image: data[productID-1].image,
-      title: data[productID-1].title,
-      price: data[productID-1].price,
+      image: data[productID - 1].image,
+      title: data[productID - 1].title,
+      price: data[productID - 1].price,
     });
     setCart(arr);
     setInCart((prevState) => prevState + 1);
@@ -30,8 +30,8 @@ const Cart = ({ productID, cart, setCart, setInCart, data }) => {
     let element = e.target.tagName === 'I' ? e.target.parentNode : e.target;
     const arr = [...cart];
     arr.forEach((product) => {
-      if (product.id == element.getAttribute('data-id') ) {
-        product.count = Math.max(1, product.count-1);
+      if (product.id == element.getAttribute('data-id')) {
+        product.count = Math.max(1, product.count - 1);
       }
     });
     setCart(arr);
@@ -53,10 +53,15 @@ const Cart = ({ productID, cart, setCart, setInCart, data }) => {
         return product.count;
       }
     }
-  }
+  };
 
   return isInCart() ? (
-    <Counter addItem={addItem} removeItem={removeItem} count={getCount()} id={productID}/>
+    <Counter
+      addItem={addItem}
+      removeItem={removeItem}
+      count={getCount()}
+      id={productID}
+    />
   ) : (
     <button
       onClick={addToCart}

@@ -1,8 +1,11 @@
 import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Counter from '../components/Counter';
+import paymentImage from '../assets/images/payment.png';
+import { useTitle } from '../Utils/useTitle';
 
 const Cart = ({ cart, setCart, setInCart }) => {
+  useTitle('FakeStore - Cart')
   const removeFromCart = (e) => {
     const arr = cart.filter(
       (product) => product.id != e.target.getAttribute('data-id')
@@ -44,7 +47,7 @@ const Cart = ({ cart, setCart, setInCart }) => {
             <img src={product.image} alt=" " className="w-20" />
           </div>
           <div className="text-center lg:flex lg:flex-col lg:justify-center gap-4 lg:flex-grow lg:font-normal">
-            <p className='lg:text-lg text-center'>{product.title}</p>
+            <p className="lg:text-lg text-center">{product.title}</p>
             <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-center lg:gap-10 lg:items-center">
               <p className="font-bold mt-3 lg:hidden">$ {product.price}</p>
               <Counter
@@ -114,7 +117,7 @@ const Cart = ({ cart, setCart, setInCart }) => {
           <NavLink to={'/'}>Proceed To Checkout</NavLink>
         </button>
         <div className="bg-white">
-          <img src="/src/assets/images/payment.png" alt="" />
+          <img src={paymentImage} alt="" />
         </div>
       </div>
     </main>

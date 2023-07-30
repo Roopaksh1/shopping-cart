@@ -34,9 +34,7 @@ const Counter = ({ addItem, removeItem, count, id }) => {
       >
         <i className="fa-solid fa-plus"></i>
       </button>
-      <div className="border-r-2 border-gray-300 px-2 md:text-2xl">
-        {count}
-      </div>
+      <div className="border-r-2 border-gray-300 px-2 md:text-2xl">{count}</div>
       {element.current}
     </div>
   );
@@ -49,4 +47,4 @@ Counter.propTypes = {
   removeItem: PropTypes.func,
   count: PropTypes.number,
   id: PropTypes.number,
-}
+};
