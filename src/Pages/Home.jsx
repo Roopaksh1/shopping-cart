@@ -3,7 +3,7 @@ import shoppingImage from '../assets/images/shopping_img.png';
 import { useTitle } from '../Utils/useTitle';
 
 const Home = () => {
-  useTitle('FakeStore - Home')
+  useTitle('FakeStore - Home');
   return (
     <main className="container mx-auto p-5 md:flex justify-between md:max-w-5xl flex-grow">
       <div className="flex flex-col md:justify-center items-center text-center md:text-start md:items-start gap-5">

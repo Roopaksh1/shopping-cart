@@ -1,27 +1,42 @@
-import { useEffect, useState } from 'react';
-import { PropTypes } from 'prop-types';
+import { useContext, useEffect } from 'react';
 import Product from '../components/Product';
 import { useTitle } from '../Utils/useTitle';
+import { CartContext } from '../App';
 
-const Shop = ({ cart, setCart, setInCart }) => {
-  useTitle('FakeStore - Shop')
-  const [data, setData] = useState();
-  const [isLoading, setLoading] = useState(true);
-  const [category, setCategory] = useState('all');
+const Shop = () => {
+  useTitle('FakeStore - Shop');
+  const { product, handleProduct } = useContext(CartContext);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.log(err))
-      .finally(setLoading(false));
-  }, []);
+      .then((data) =>
+        handleProduct({
+          type: 'data_fetched',
+          payLoad: data,
+        })
+      )
+      .catch((err) =>
+        handleProduct({
+          type: 'error',
+          payLoad: err,
+        })
+      )
+      .finally(
+        handleProduct({
+          type: 'loaded',
+        })
+      );
+  }, [handleProduct]);
 
   const changeCategory = (e) => {
-    setCategory(e.target.value);
+    handleProduct({
+      type: 'category_changed',
+      payLoad: e.target.value,
+    });
   };
-
-  return isLoading || !data ? (
+  
+  return product.loading || !product.data ? (
     <div className="flex justify-center items-center flex-grow">
       <i className="fa-solid fa-spinner animate-spin text-8xl"></i>
     </div>
@@ -41,26 +56,10 @@ const Shop = ({ cart, setCart, setInCart }) => {
           <option value="women's clothing">Women&apos;s Clothing</option>
           <option value="jewelery">Jewelry</option>
         </select>
-        <main>
-          {
-            <Product
-              data={data}
-              category={category}
-              cart={cart}
-              setCart={setCart}
-              setInCart={setInCart}
-            />
-          }
-        </main>
+        <main>{<Product />}</main>
       </div>
     </>
   );
 };
 
 export default Shop;
-
-Shop.propTypes = {
-  cart: PropTypes.array,
-  setCart: PropTypes.func,
-  setInCart: PropTypes.func,
-};

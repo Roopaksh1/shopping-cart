@@ -1,44 +1,14 @@
 import { PropTypes } from 'prop-types';
 import Counter from './Counter';
+import { useContext } from 'react';
+import { CartContext } from '../App';
+import { addToCart, decreaseCount, increaseCount } from '../actions';
 
-const Cart = ({ productID, cart, setCart, setInCart, data }) => {
-  const addToCart = () => {
-    const arr = [...cart];
-    arr.push({
-      id: productID,
-      count: 1,
-      image: data[productID - 1].image,
-      title: data[productID - 1].title,
-      price: data[productID - 1].price,
-    });
-    setCart(arr);
-    setInCart((prevState) => prevState + 1);
-  };
-
-  const addItem = (e) => {
-    let element = e.target.tagName === 'I' ? e.target.parentNode : e.target;
-    const arr = [...cart];
-    arr.forEach((product) => {
-      if (product.id == element.getAttribute('data-id')) {
-        product.count += 1;
-      }
-    });
-    setCart(arr);
-  };
-
-  const removeItem = (e) => {
-    let element = e.target.tagName === 'I' ? e.target.parentNode : e.target;
-    const arr = [...cart];
-    arr.forEach((product) => {
-      if (product.id == element.getAttribute('data-id')) {
-        product.count = Math.max(1, product.count - 1);
-      }
-    });
-    setCart(arr);
-  };
+const Cart = ({ productID }) => {
+  const { cart, handleCart, product } = useContext(CartContext);
 
   const isInCart = () => {
-    let arr = [...cart];
+    let arr = [...cart.cart];
     for (let product of arr) {
       if (product.id === productID) {
         return true;
@@ -47,7 +17,7 @@ const Cart = ({ productID, cart, setCart, setInCart, data }) => {
   };
 
   const getCount = () => {
-    let arr = [...cart];
+    let arr = [...cart.cart];
     for (let product of arr) {
       if (product.id === productID) {
         return product.count;
@@ -57,14 +27,22 @@ const Cart = ({ productID, cart, setCart, setInCart, data }) => {
 
   return isInCart() ? (
     <Counter
-      addItem={addItem}
-      removeItem={removeItem}
+      onAddItem={() => increaseCount(handleCart, productID)}
+      onRemoveItem={() => decreaseCount(handleCart, productID)}
       count={getCount()}
       id={productID}
     />
   ) : (
     <button
-      onClick={addToCart}
+      onClick={() => {
+        addToCart(handleCart, {
+          id: productID,
+          count: 1,
+          image: product.data[productID - 1].image,
+          title: product.data[productID - 1].title,
+          price: product.data[productID - 1].price,
+        });
+      }}
       id={productID}
       className="cursor-pointer bg-[#f6f6f6] text-black rounded-2xl p-2 text-sm hover:bg-black hover:text-white transition-colors border-2 lg:text-lg mt-auto"
     >
@@ -77,8 +55,5 @@ export default Cart;
 
 Cart.propTypes = {
   productID: PropTypes.number,
-  cart: PropTypes.array,
-  setCart: PropTypes.func,
-  setInCart: PropTypes.func,
   data: PropTypes.array,
 };

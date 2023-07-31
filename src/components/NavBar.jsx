@@ -1,8 +1,10 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { PropTypes } from 'prop-types';
 import Footer from './Footer';
+import { useContext } from 'react';
+import { CartContext } from '../App';
 
-const NavBar = ({ inCart }) => {
+const NavBar = () => {
+  const { cart } = useContext(CartContext);
   const showNavbar = () => {
     document.querySelector('header .navbar').classList.toggle('hidden');
   };
@@ -18,7 +20,7 @@ const NavBar = ({ inCart }) => {
           >
             <i className="fa-solid fa-cart-shopping"></i>
             <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
-              {inCart}
+              {cart.totalItem}
             </div>
           </NavLink>
           <button
@@ -57,7 +59,7 @@ const NavBar = ({ inCart }) => {
             >
               <i className="fa-solid fa-cart-shopping"></i>
               <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
-                {inCart}
+                {cart.totalItem}
               </div>
             </NavLink>
           </nav>
@@ -70,7 +72,3 @@ const NavBar = ({ inCart }) => {
 };
 
 export default NavBar;
-
-NavBar.propTypes = {
-  inCart: PropTypes.number,
-};

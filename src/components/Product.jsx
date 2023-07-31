@@ -1,14 +1,20 @@
-import { PropTypes } from 'prop-types';
+import { useContext } from 'react';
 import Cart from './Cart';
+import { CartContext } from '../App';
 
-const Product = ({ data, category, cart, setCart, setInCart }) => {
+const Product = () => {
+  const { product } = useContext(CartContext);
   const mapData = () => {
-    if (data) {
+    if (product.data) {
       let arr = [];
-      if (category === 'all') {
-        arr = data.filter((product) => product.category != 'electronics');
+      if (product.category === 'all') {
+        arr = product.data.filter(
+          (product) => product.category != 'electronics'
+        );
       } else {
-        arr = data.filter((product) => product.category === category);
+        arr = product.data.filter(
+          (product) => product.category === product.category
+        );
       }
       return arr.map((product, index) => {
         return (
@@ -23,13 +29,7 @@ const Product = ({ data, category, cart, setCart, setInCart }) => {
               <p>{product.title}</p>
               <p className="font-bold mt-3">$ {product.price}</p>
             </div>
-            <Cart
-              productID={product.id}
-              cart={cart}
-              setCart={setCart}
-              setInCart={setInCart}
-              data={data}
-            />
+            <Cart productID={product.id} />
           </div>
         );
       });
@@ -37,14 +37,6 @@ const Product = ({ data, category, cart, setCart, setInCart }) => {
   };
 
   return <div className="product mt-7">{mapData()}</div>;
-};
-
-Product.propTypes = {
-  data: PropTypes.array,
-  category: PropTypes.string,
-  cart: PropTypes.array,
-  setCart: PropTypes.func,
-  setInCart: PropTypes.func,
 };
 
 export default Product;

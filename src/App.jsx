@@ -1,17 +1,23 @@
-import { useState } from 'react';
+import { createContext, useReducer } from 'react';
 import Router from './Router';
+import { initialCartState, reducerCart } from './reducers/reducer_cart';
+import { initialProductState, reducerProduct } from './reducers/reducer_product';
+
+export const CartContext = createContext({
+  cart: [],
+  handleCart: () => {},
+  productCart: [],
+  handleProduct: () => {},
+});
 
 function App() {
-  const [cart, setCart] = useState([]);
-  const [inCart, setInCart] = useState(0);
+  const [cart, handleCart] = useReducer(reducerCart, initialCartState);
+  const [product, handleProduct] = useReducer(reducerProduct, initialProductState);
 
   return (
-    <Router
-      cart={cart}
-      setCart={setCart}
-      inCart={inCart}
-      setInCart={setInCart}
-    />
+    <CartContext.Provider value={{ cart, handleCart, product, handleProduct }}>
+      <Router />
+    </CartContext.Provider>
   );
 }
 

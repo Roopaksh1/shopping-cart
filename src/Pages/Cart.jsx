@@ -1,43 +1,17 @@
-import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Counter from '../components/Counter';
 import paymentImage from '../assets/images/payment.png';
 import { useTitle } from '../Utils/useTitle';
+import { useContext } from 'react';
+import { CartContext } from '../App';
+import { decreaseCount, increaseCount, removeFromCart } from '../actions';
 
-const Cart = ({ cart, setCart, setInCart }) => {
-  useTitle('FakeStore - Cart')
-  const removeFromCart = (e) => {
-    const arr = cart.filter(
-      (product) => product.id != e.target.getAttribute('data-id')
-    );
-    setCart(arr);
-    setInCart((prevState) => prevState - 1);
-  };
-
-  const addItem = (e) => {
-    let element = e.target.tagName === 'I' ? e.target.parentNode : e.target;
-    const arr = [...cart];
-    arr.forEach((product) => {
-      if (product.id == element.getAttribute('data-id')) {
-        product.count += 1;
-      }
-    });
-    setCart(arr);
-  };
-
-  const removeItem = (e) => {
-    let element = e.target.tagName === 'I' ? e.target.parentNode : e.target;
-    const arr = [...cart];
-    arr.forEach((product) => {
-      if (product.id == element.getAttribute('data-id')) {
-        product.count = Math.max(1, product.count - 1);
-      }
-    });
-    setCart(arr);
-  };
+const Cart = () => {
+  useTitle('FakeStore - Cart');
+  const { cart, handleCart } = useContext(CartContext);
 
   const mapCart = () => {
-    return cart.map((product, index) => {
+    return cart.cart.map((product, index) => {
       return (
         <div
           key={index}
@@ -51,8 +25,8 @@ const Cart = ({ cart, setCart, setInCart }) => {
             <div className="flex flex-col items-center gap-4 lg:flex-row lg:justify-center lg:gap-10 lg:items-center">
               <p className="font-bold mt-3 lg:hidden">$ {product.price}</p>
               <Counter
-                addItem={addItem}
-                removeItem={removeItem}
+                onAddItem={() => increaseCount(handleCart, product.id)}
+                onRemoveItem={() => decreaseCount(handleCart, product.id)}
                 count={product.count}
                 id={product.id}
               />
@@ -61,7 +35,7 @@ const Cart = ({ cart, setCart, setInCart }) => {
               </p>
               <button
                 data-id={product.id}
-                onClick={removeFromCart}
+                onClick={() => removeFromCart(handleCart, product.id)}
                 className="py-1 px-2 rounded-lg cursor-pointer hover:bg-red-400 bg-red-300 self-stretch"
               >
                 Remove
@@ -75,7 +49,7 @@ const Cart = ({ cart, setCart, setInCart }) => {
 
   const getTotal = () => {
     let total = 0;
-    for (let product of cart) {
+    for (let product of cart.cart) {
       total += product.price * product.count;
     }
     return Math.round(total * 100) / 100;
@@ -98,7 +72,7 @@ const Cart = ({ cart, setCart, setInCart }) => {
         <div className="flex justify-between lg:text-2xl">
           <p>Your Shopping Cart</p>
           <p>
-            {cart.length} {cart.length === 1 ? 'Item' : 'Items'}
+            {cart.cart.length} {cart.length === 1 ? 'Item' : 'Items'}
           </p>
         </div>
         <div className="bg-white rounded-xl flex flex-col items-center gap-4 hidden lg:block">
@@ -125,9 +99,3 @@ const Cart = ({ cart, setCart, setInCart }) => {
 };
 
 export default Cart;
-
-Cart.propTypes = {
-  cart: PropTypes.array,
-  setCart: PropTypes.func,
-  setInCart: PropTypes.func,
-};
