@@ -4,7 +4,9 @@
 <a href=https://shopfakestore.netlify.app/><img src=https://img.shields.io/badge/%F0%9F%91%89-LIVE-success></a>
 </div>
 
-![image](https://github.com/Roopaksh1/shopping-cart/assets/72032743/6315b44f-a7d3-477b-81a1-7d2b08c97229)
+![image](https://github.com/Roopaksh1/shopping-cart/assets/72032743/cfd20ad9-6d91-461e-ae31-0f63918a35a7)
 
-![image](https://github.com/Roopaksh1/shopping-cart/assets/72032743/9010ff21-6164-472d-ad1f-3ae3a4c9a315)
+
+![image](https://github.com/Roopaksh1/shopping-cart/assets/72032743/2239c39b-5721-4bef-adc2-5e63932534ec)
+
 
